@@ -1,0 +1,93 @@
+{
+  "info": {
+    "name": "AI-Pass Demo API Tests",
+    "description": "Postman collection covering login, dashboard, marketplace apps, and task API endpoints for the AI-Pass demo application.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "BASE_URL", "value": "http://localhost:3000" },
+    { "key": "API_TOKEN", "value": "demo-token" }
+  ],
+  "item": [
+    {
+      "name": "Login - valid credentials",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{BASE_URL}}/api/login",
+        "body": { "mode": "raw", "raw": "{\n  \"email\": \"demo@aipass.test\",\n  \"password\": \"Pass123!\"\n}" }
+      },
+      "event": [{
+        "listen": "test",
+        "script": { "type": "text/javascript", "exec": ["pm.test('Status is 200', () => pm.response.to.have.status(200));", "pm.test('Token returned', () => pm.expect(pm.response.json().token).to.eql('demo-token'));" ] }
+      }]
+    },
+    {
+      "name": "Login - invalid credentials",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "url": "{{BASE_URL}}/api/login",
+        "body": { "mode": "raw", "raw": "{\n  \"email\": \"bad@aipass.test\",\n  \"password\": \"Wrong123!\"\n}" }
+      },
+      "event": [{
+        "listen": "test",
+        "script": { "type": "text/javascript", "exec": ["pm.test('Status is 401', () => pm.response.to.have.status(401));", "pm.test('Error returned', () => pm.expect(pm.response.json()).to.have.property('error'));" ] }
+      }]
+    },
+    {
+      "name": "Get apps",
+      "request": { "method": "GET", "url": "{{BASE_URL}}/api/apps" },
+      "event": [{
+        "listen": "test",
+        "script": { "type": "text/javascript", "exec": ["pm.test('Status is 200', () => pm.response.to.have.status(200));", "pm.test('Apps array returned', () => pm.expect(pm.response.json()).to.be.an('array'));" ] }
+      }]
+    },
+    {
+      "name": "Get dashboard - missing authentication",
+      "request": { "method": "GET", "url": "{{BASE_URL}}/api/dashboard" },
+      "event": [{
+        "listen": "test",
+        "script": { "type": "text/javascript", "exec": ["pm.test('Status is 401', () => pm.response.to.have.status(401));"] }
+      }]
+    },
+    {
+      "name": "Get dashboard - valid token",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{API_TOKEN}}" }],
+        "url": "{{BASE_URL}}/api/dashboard"
+      },
+      "event": [{
+        "listen": "test",
+        "script": { "type": "text/javascript", "exec": ["pm.test('Status is 200', () => pm.response.to.have.status(200));", "pm.test('Widgets array returned', () => pm.expect(pm.response.json().widgets).to.be.an('array'));" ] }
+      }]
+    },
+    {
+      "name": "Create task - valid payload",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{API_TOKEN}}" }],
+        "url": "{{BASE_URL}}/api/tasks",
+        "body": { "mode": "raw", "raw": "{\n  \"title\": \"Review AI workflow results\"\n}" }
+      },
+      "event": [{
+        "listen": "test",
+        "script": { "type": "text/javascript", "exec": ["pm.test('Status is 201', () => pm.response.to.have.status(201));", "pm.test('Created status returned', () => pm.expect(pm.response.json().status).to.eql('created'));" ] }
+      }]
+    },
+    {
+      "name": "Create task - invalid payload",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }, { "key": "Authorization", "value": "Bearer {{API_TOKEN}}" }],
+        "url": "{{BASE_URL}}/api/tasks",
+        "body": { "mode": "raw", "raw": "{\n  \"description\": \"Missing title\"\n}" }
+      },
+      "event": [{
+        "listen": "test",
+        "script": { "type": "text/javascript", "exec": ["pm.test('Status is 400', () => pm.response.to.have.status(400));", "pm.test('Validation error returned', () => pm.expect(pm.response.json().error).to.include('Title'));" ] }
+      }]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "ai-pass-qa-submission",
+  "version": "1.0.0",
+  "description": "AI-Pass demo application with Playwright UI/API test automation and QA documentation.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "playwright test",
+    "test:ui": "playwright test tests/ui",
+    "test:api": "playwright test tests/api",
+    "report": "playwright show-report"
+  },
+  "keywords": [
+    "qa",
+    "playwright",
+    "api-testing",
+    "test-automation",
+    "ai-pass"
+  ],
+  "author": "Oleg Gogol",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.49.0"
+  }
+}

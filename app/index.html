@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI-Pass Demo</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <aside class="sidebar" data-testid="sidebar">
+    <div class="brand">AI-Pass</div>
+    <button class="nav active" data-testid="nav-dashboard" data-route="dashboard">Dashboard</button>
+    <button class="nav" data-testid="nav-marketplace" data-route="marketplace">Marketplace</button>
+    <button class="nav" data-testid="nav-ai-apps" data-route="ai-apps">AI Apps</button>
+    <button class="nav" data-testid="nav-tasks" data-route="tasks">Simple Task</button>
+  </aside>
+
+  <main class="main">
+    <section id="login-screen" class="screen auth-screen" data-testid="login-screen">
+      <div class="auth-card">
+        <h1>AI-Pass Login</h1>
+        <p class="muted">Enterprise AI Operating System demo</p>
+        <form id="login-form" data-testid="login-form">
+          <label>Email
+            <input data-testid="email-input" id="email" type="email" placeholder="demo@aipass.test" />
+          </label>
+          <label>Password
+            <input data-testid="password-input" id="password" type="password" placeholder="Pass123!" />
+          </label>
+          <button data-testid="login-button" type="submit">Login</button>
+        </form>
+        <div id="login-error" class="error" data-testid="login-error" aria-live="polite"></div>
+        <p class="hint">Demo credentials: demo@aipass.test / Pass123!</p>
+      </div>
+    </section>
+
+    <section id="app-shell" class="screen hidden" data-testid="app-shell">
+      <header class="topbar">
+        <div>
+          <h1 id="page-title" data-testid="page-title">Dashboard</h1>
+          <p id="page-subtitle" class="muted">Workspace overview and quick actions</p>
+        </div>
+        <button id="logout" data-testid="logout-button">Logout</button>
+      </header>
+      <section id="content" data-testid="content"></section>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>

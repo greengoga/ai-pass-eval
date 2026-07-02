@@ -1,0 +1,17 @@
+{
+  "validUser": {
+    "email": "demo@aipass.test",
+    "password": "Pass123!"
+  },
+  "invalidUser": {
+    "email": "invalid@aipass.test",
+    "password": "Wrong123!"
+  },
+  "apiToken": "demo-token",
+  "marketplaceSearchTerm": "invoice",
+  "marketplaceCategory": "Finance",
+  "task": {
+    "title": "Review AI workflow results",
+    "description": "Validate generated summary and check confidence score."
+  }
+}
