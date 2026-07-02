@@ -178,7 +178,16 @@ GitHub Actions workflow is included:
 .github/workflows/playwright.yml
 ```
 
-It installs Node.js, installs Playwright browsers, starts the application, runs tests, and uploads the HTML report artifact.
+On every push, the workflow automatically:
+
+- Installs project dependencies
+- Installs Playwright browsers
+- Starts the application
+- Executes the Playwright UI and API test suites
+- Generates the Playwright HTML report
+- Uploads the HTML report as a GitHub Actions artifact
+
+The latest successful workflow run and downloadable test report are available under the repository's **Actions** tab.
 
 ## Postman Collection
 
