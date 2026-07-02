@@ -187,6 +187,8 @@ On every push, the workflow automatically:
 - Generates the Playwright HTML report
 - Uploads the HTML report as a GitHub Actions artifact
 
+The Playwright HTML report is automatically generated during each GitHub Actions workflow execution and is available as a downloadable artifact from the latest successful workflow run.
+
 The latest successful workflow run and downloadable test report are available under the repository's **Actions** tab.
 
 ## Postman Collection
