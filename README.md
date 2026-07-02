@@ -1,6 +1,8 @@
-# AI-Pass QA Evaluation Project
+# AI-Pass QA Automation Evaluation Submission
 
-This repository contains a complete 24-hour QA evaluation submission for an **AI-Pass - Enterprise AI Operating System** demo module.
+This repository was created as part of a QA Automation Engineer technical evaluation.
+
+It demonstrates manual testing, UI automation, API testing, reporting, reusable Page Object architecture, CI/CD integration, and QA documentation for a deployed web application.
 
 It includes:
 
@@ -14,15 +16,20 @@ It includes:
 - Postman collection.
 - GitHub Actions workflow.
 
-## Live Application URL
+## Live Demo
 
-After deployment, add the public URL here:
+**Application URL**
 
-```text
-LIVE_APP_URL=PASTE_DEPLOYED_URL_HERE
-```
+https://ai-pass-eval-production.up.railway.app/
 
-The app can be deployed to Render, Railway, Vercel or any Node.js hosting provider.
+The application includes:
+
+- Login
+- Dashboard
+- AI Apps
+- Marketplace
+- Task Management
+- REST API
 
 ## Demo Credentials
 
@@ -31,6 +38,18 @@ Email: demo@aipass.test
 Password: Pass123!
 API token: demo-token
 ```
+
+## Deliverables
+
+- ✅ Live Application URL
+- ✅ GitHub Repository
+- ✅ Playwright UI Automation
+- ✅ REST API Automation
+- ✅ Test Plan (PDF)
+- ✅ Bug Report & Coverage Matrix (Excel)
+- ✅ Postman Collection
+- ✅ GitHub Actions CI
+- ✅ HTML Test Report
 
 ## Project Structure
 
@@ -82,6 +101,14 @@ Open the app:
 
 ```text
 http://localhost:3000
+```
+
+## Running Against the Deployed Application
+
+Set:
+
+```text
+BASE_URL=https://ai-pass-eval-production.up.railway.app/
 ```
 
 Run all tests:
@@ -165,11 +192,14 @@ Set the collection variable `BASE_URL` to the deployed application URL or `http:
 
 ## Limitations and Future Improvements
 
-Due to the 24-hour scope, this submission focuses on core functionality and stable smoke/regression coverage. Future improvements could include:
+The project intentionally focuses on QA engineering practices rather than application complexity. Mock data is used where appropriate to keep the evaluation focused on testing methodology.
 
-- Accessibility checks.
-- Visual regression tests.
-- Performance smoke tests.
-- Extended cross-browser and mobile viewport coverage.
-- More complete API contract validation.
-- Role-based authorization scenarios.
+Future improvements include:
+
+- Accessibility testing
+- Visual regression testing
+- Performance smoke tests
+- Extended cross-browser testing
+- Additional mobile viewport coverage
+- Expanded API contract validation
+- Role-based authorization scenarios
